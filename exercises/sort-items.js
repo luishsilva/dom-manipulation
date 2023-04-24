@@ -13,7 +13,6 @@
 
 // Your code goes here...
 const allItems = document.querySelectorAll('.item');
-console.log(allItems)
 
 
 /**
@@ -24,8 +23,7 @@ console.log(allItems)
  */
 
 // Your code goes here...
-
-
+const sortBtn = document.querySelectorAll('.sortBtn');
 
 /**
  * @task
