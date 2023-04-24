@@ -37,6 +37,9 @@ const sortBtn = document.querySelectorAll('.sortBtn');
  */
 
 // Your code goes here...
+sortData = (btn) => {
+  console.log(btn.dataset.sortdir)
+}
 
 
 
@@ -49,5 +52,8 @@ const sortBtn = document.querySelectorAll('.sortBtn');
  */
 
 // Your code goes here...
+sortBtn.forEach(btn => {
+  btn.addEventListener('click', () => sortData (btn))
+})
 
 
