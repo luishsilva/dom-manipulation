@@ -12,7 +12,7 @@
  */
 
 // Your code goes here...
-
+const allItems = document.querySelectorAll('.item');
 
 
 /**
@@ -23,8 +23,7 @@
  * */
 
 // Your code goes here
-
-
+const main =  document.getElementById('main');
 
 /**
  * @task
@@ -34,7 +33,7 @@
  */
 
 // Your code goes here
-
+const favs =  document.getElementById('favs');
 
 
 /**
@@ -47,23 +46,40 @@
  */
 
 // Your code goes here
+function updateCollections(id, direction) {
 
+  const element = document.getElementById(id);
+  direction = element.parentElement.id;
+
+  element.querySelector('i').classList.remove('class', direction === 'main' ? 'fa-heart-circle-plus' : 'fa-heart-crack');
+  element.querySelector('i').classList.add(direction === 'favs' ? 'fa-heart-circle-plus' : 'fa-heart-crack');
+  
+  if (direction === 'favs'){
+    main.appendChild(element);
+  } else {
+    favs.appendChild(element);
+    console.log(main)
+
+  } 
+}
 
 
 /**
  * @task
  * Iterate through the every item in allItems NodeList and apply the
- * addEventListener click event to each item.
+ * addEventListener click event to each item. - done
  * The item click must execute/call the following:
- * * Get the current item's parent id ('main' or 'favs')
- * * Get the current item id (a number value)
- * * Set the direction constant to be equal to 'toFavs' or 'toMain', based off the current location
- * * The direction means the collection to move the item into, when the item is clicked
- * * If the correct item's location is the parent of id 'main' -> the direction is 'toFavs'
- * * If the correct item's location is the parent of id 'favs' -> the direction is 'toMain'
- * * Make the updateCollections function call, assign the item Id and the direction defined above
+ * * Get the current item's parent id ('main' or 'favs') - done
+ * * Get the current item id (a number value) - done
+ * * Set the direction constant to be equal to 'toFavs' or 'toMain', based off the current location - done
+ * * The direction means the collection to move the item into, when the item is clicked - done
+ * * If the correct item's location is the parent of id 'main' -> the direction is 'toFavs' - done
+ * * If the correct item's location is the parent of id 'favs' -> the direction is 'toMain' - done
+ * * Make the updateCollections function call, assign the item Id and the direction defined above - done
  */
 
 // Your code goes here...
-
-
+allItems.forEach(item => {
+  const direction = document.getElementById(item.id).parentElement === 'main' ? 'main' : 'favs';
+  item.addEventListener('click', () => updateCollections (item.id, direction))
+})
