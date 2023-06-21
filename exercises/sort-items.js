@@ -27,9 +27,9 @@ const sortBtn = document.querySelectorAll('.sortBtn');
 
 /**
  * @task
- * Create a sortData function that follows the list of requirements:
- * * Takes an argument of the direction to sort as a string of 'asc' or 'desc'
- * * Defines a container variable to get the node by id of 'main'
+ * Create a sortData function that follows the list of requirements: - done
+ * * Takes an argument of the direction to sort as a string of 'asc' or 'desc' - done
+ * * Defines a container variable to get the node by id of 'main' - done
  * * Uses the allItems variable as a source for the array of items to sort
  * * Sorts the items by id and appends them back to the main container in the sorted order.
  * Example: sortData('desc') => <reversed order of items in the main container>
@@ -37,8 +37,19 @@ const sortBtn = document.querySelectorAll('.sortBtn');
  */
 
 // Your code goes here...
-sortData = (btn) => {
-  console.log(btn.dataset.sortdir)
+sortData = (order) => {
+  let main = document.getElementById('main');
+
+  /** 
+   * Transform a NodeList into a array
+   */
+  const allItemsArray = [...allItems];
+  sortedItems = order === 'desc' ? allItemsArray.reverse() : allItemsArray.sort()
+
+  /**
+   * 
+   * Loop through the array and add   */  
+  sortedItems.forEach( (item) => main.appendChild(item) )
 }
 
 
@@ -53,7 +64,7 @@ sortData = (btn) => {
 
 // Your code goes here...
 sortBtn.forEach(btn => {
-  btn.addEventListener('click', () => sortData (btn))
+  btn.addEventListener('click', () => sortData (btn.dataset.sortdir))
 })
 
 
