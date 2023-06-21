@@ -58,8 +58,6 @@ function updateCollections(id, direction) {
     main.appendChild(element);
   } else {
     favs.appendChild(element);
-    console.log(main)
-
   } 
 }
 
