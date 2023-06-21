@@ -38,3 +38,62 @@
  */
 
 // Your code goes here...
+
+/**
+ * Select the container that holds all the items
+ */
+const container = document.querySelector('.cardsContainer');
+let arrFavorites = [];
+
+const storageArr = localStorage.getItem("favorites");
+if (storageArr) {
+  const cards = document.querySelectorAll('.card');
+  cardsArray = Array.from(cards).map((cardItem) => {
+    if (storageArr.includes(cardItem.id)) {
+      cardItem.style.backgroundColor = 'red';
+      arrFavorites.push(cardItem.id);
+    }
+  });
+}
+ /**
+  * Create a function that changes the color of a specific target
+  * element if it has a specific class attribute value of 'item'
+  */
+
+const changeColorOfSpecificTarget = (target, color) => {
+  target.style.backgroundColor = color;
+}
+
+/** 
+ * Create a function that adds an id to favorites LS by id passed as an argument
+*/
+const addToFavorites = (itemId) => {
+  arrFavorites.push(itemId);
+  localStorage.setItem("favorites", arrFavorites);
+}
+
+const removeFromFavorites = (itemId) => {
+  arrFavorites.splice(arrFavorites.indexOf(itemId), 1).join(',');
+  localStorage.setItem("favorites", arrFavorites);
+}
+
+/**
+ * Create a callback function that updates the element background color and does the
+ */
+const callbackFn = (e) => {
+  const item = e.target;
+  if (Array.from(item.classList).includes('card')) {
+    if (item.style.backgroundColor === '' || item.style.backgroundColor === 'white') {
+      changeColorOfSpecificTarget(item, 'red');
+      addToFavorites(item.id);
+    } else {
+      changeColorOfSpecificTarget(item, 'white');
+      removeFromFavorites(item);
+    }
+  }
+};
+
+/**
+ * add the event listener to the container, pass the callback.
+ */
+container.addEventListener('click', callbackFn);
